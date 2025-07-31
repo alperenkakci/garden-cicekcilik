@@ -1,0 +1,5 @@
+[33m0c4b751[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Fix admin route and simplify Vercel configuration
+[33m35342e0[m Implement professional color palette: Adobe Color-inspired modern design system
+[33mfa1e84c[m Fix admin route access: add specific routing for /admin page
+[33m4e6af5b[m Fix domain routing issues: add /lander route and SPA fallback handling
+[33m2a30b1d[m Fix Vercel deployment: add client build configuration and improve server error handling

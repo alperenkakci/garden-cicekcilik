@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const { execSync } = require('child_process');
 require('dotenv').config();
 
 const app = express();
@@ -37,9 +38,26 @@ app.use('/api/payment', require('./routes/payment'));
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
-  // In Vercel, static files are served automatically
-  // We only need to handle API routes
   console.log('Running in production/Vercel mode');
+  
+  // Build React app if build doesn't exist
+  try {
+    const buildPath = path.join(__dirname, 'client/build');
+    if (!require('fs').existsSync(buildPath)) {
+      console.log('Building React app...');
+      execSync('cd client && npm install && npm run build', { stdio: 'inherit' });
+    }
+  } catch (error) {
+    console.error('Build error:', error);
+  }
+  
+  // Serve static files from React build
+  app.use(express.static(path.join(__dirname, 'client/build')));
+  
+  // Handle React routing, return all requests to React app
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
 }
 
 const PORT = process.env.PORT || 5000;
