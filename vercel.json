@@ -19,7 +19,11 @@
       "dest": "server.js"
     },
     {
-      "src": "/lander",
+      "src": "/admin",
+      "dest": "/client/index.html"
+    },
+    {
+      "src": "/admin/(.*)",
       "dest": "/client/index.html"
     },
     {
