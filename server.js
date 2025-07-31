@@ -15,6 +15,10 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://admin:admin123456@cluster0.va2y2ff.mongodb.net/garden-cicekcilik?retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
   useUnifiedTopology: true
+}).then(() => {
+  console.log('MongoDB connected successfully');
+}).catch((error) => {
+  console.error('MongoDB connection error:', error);
 });
 
 const db = mongoose.connection;
@@ -33,13 +37,9 @@ app.use('/api/payment', require('./routes/payment'));
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
-  // Serve static files from the React app
-  app.use(express.static(path.join(__dirname, 'client/build')));
-  
-  // Handle React routing, return all requests to React app
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
+  // In Vercel, static files are served automatically
+  // We only need to handle API routes
+  console.log('Running in production/Vercel mode');
 }
 
 const PORT = process.env.PORT || 5000;
