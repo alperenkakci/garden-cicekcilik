@@ -1,182 +1,200 @@
-# Garden Çiçekçilik - E-ticaret Sitesi
+# Garden Çiçekçilik E-commerce Website
 
-MERN stack (MongoDB, Express.js, React.js, Node.js) kullanılarak geliştirilmiş modern çiçekçilik e-ticaret sitesi.
+Modern ve kullanıcı dostu bir çiçek satış platformu. React.js frontend ve Node.js backend ile geliştirilmiş, iyzico ödeme entegrasyonu içeren tam özellikli e-ticaret sitesi.
 
 ## 🚀 Özellikler
 
-### Kullanıcı Özellikleri
-- **Ürün Katalog**: Çeşitli çiçek kategorileri ve ürünler
-- **Arama ve Filtreleme**: Ürün arama, kategori filtreleme ve sıralama
-- **Sepet Yönetimi**: Ürün ekleme, çıkarma, miktar güncelleme
-- **Ödeme Sistemi**: Kredi kartı ve kapıda ödeme seçenekleri
-- **Sipariş Takibi**: Sipariş durumu ve detayları
-- **Responsive Tasarım**: Mobil ve masaüstü uyumlu
+### Frontend
+- **Modern UI/UX**: Glassmorphism tasarım, animasyonlar ve responsive layout
+- **Ürün Katalog**: Kategorilere göre filtreleme ve arama
+- **Sepet Yönetimi**: Ürün ekleme, çıkarma ve miktar güncelleme
+- **Ödeme Sistemi**: iyzico entegrasyonu ile güvenli ödeme
+- **Sipariş Takibi**: Gerçek zamanlı sipariş durumu
+- **Admin Paneli**: Ürün ve kategori yönetimi
 
-### Teknik Özellikler
-- **Backend**: Node.js, Express.js, MongoDB
-- **Frontend**: React.js, React Router, React Icons
-- **State Management**: React Hooks
-- **Styling**: CSS3, Responsive Design
-- **API**: RESTful API endpoints
-- **Validation**: Form validation ve error handling
+### Backend
+- **RESTful API**: Express.js ile modern API tasarımı
+- **Veritabanı**: MongoDB ile veri yönetimi
+- **Kimlik Doğrulama**: JWT tabanlı güvenlik
+- **Ödeme Entegrasyonu**: iyzico API entegrasyonu
+- **Dosya Yönetimi**: Resim yükleme ve depolama
 
-## 📋 Gereksinimler
+## 🛠️ Teknolojiler
 
+### Frontend
+- React.js 18.2.0
+- React Router DOM 6.8.1
+- Axios 1.3.4
+- React Icons 4.8.0
+- React Toastify 9.1.2
+- Styled Components 5.3.9
+- Framer Motion 10.0.1
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+- Multer (dosya yükleme)
+- node-fetch (iyzico API)
+
+## 📦 Kurulum
+
+### Gereksinimler
 - Node.js (v14 veya üzeri)
+- MongoDB
 - npm veya yarn
 
-## 🛠️ Kurulum
-
-### 1. Projeyi Klonlayın
+### Adım 1: Repository'yi Klonlayın
 ```bash
-git clone <repository-url>
+git clone https://github.com/KULLANICI_ADINIZ/garden-cicekcilik.git
 cd garden-cicekcilik
 ```
 
-### 2. Backend Bağımlılıklarını Yükleyin
+### Adım 2: Bağımlılıkları Yükleyin
 ```bash
+# Backend bağımlılıkları
 npm install
-```
 
-### 3. Frontend Bağımlılıklarını Yükleyin
-```bash
+# Frontend bağımlılıkları
 cd client
 npm install
 cd ..
 ```
 
-### 4. Environment Variables (Opsiyonel)
+### Adım 3: Environment Variables
 `.env` dosyası oluşturun:
 ```env
-PORT=5000
-NODE_ENV=development
+# MongoDB Connection
+MONGODB_URI=your_mongodb_connection_string
+
+# JWT Secret
+JWT_SECRET=your_jwt_secret_key
+
+# iyzico Configuration
+IYZICO_API_KEY=your_iyzico_api_key
+IYZICO_SECRET_KEY=your_iyzico_secret_key
+IYZICO_BASE_URL=https://sandbox-api.iyzipay.com
+IYZICO_MERCHANT_ID=your_merchant_id
 ```
 
-**Not**: Bu proje mock data ile çalışır, MongoDB bağlantısı gerektirmez.
-
-### 6. Uygulamayı Çalıştırın
-
-#### Geliştirme Modu (Backend + Frontend)
+### Adım 4: Veritabanını Hazırlayın
 ```bash
-npm run dev
+# Admin kullanıcısı oluşturun
+node createAdmin.js
+
+# Test verilerini yükleyin
+node seed.js
 ```
 
-#### Sadece Backend
+### Adım 5: Uygulamayı Başlatın
 ```bash
-npm run server
+# Backend'i başlatın (port 5000)
+npm start
+
+# Yeni terminal açın ve frontend'i başlatın (port 3000)
+cd client
+npm start
 ```
 
-#### Sadece Frontend
-```bash
-npm run client
-```
+## 🔧 Kullanım
 
-## 📁 Proje Yapısı
+### Admin Paneli
+- URL: `http://localhost:3000/admin`
+- Varsayılan kullanıcı: `admin`
+- Varsayılan şifre: `admin123`
 
-```
-garden-cicekcilik/
-├── client/                 # React frontend
-│   ├── public/
-│   ├── src/
-│   │   ├── components/    # React bileşenleri
-│   │   ├── pages/        # Sayfa bileşenleri
-│   │   ├── App.js
-│   │   └── index.js
-│   └── package.json
-├── models/                # MongoDB modelleri
-│   ├── Category.js
-│   ├── Order.js
-│   └── Product.js
-├── routes/               # API route'ları
-│   ├── categories.js
-│   ├── cart.js
-│   ├── orders.js
-│   └── products.js
-├── server.js             # Ana server dosyası
-├── seed.js              # Örnek veri yükleme
-└── package.json
-```
-
-## 🎯 API Endpoints
-
-### Ürünler
-- `GET /api/products` - Tüm ürünleri listele
-- `GET /api/products/:id` - Tek ürün detayı
-- `POST /api/products` - Yeni ürün ekle (Admin)
-- `PUT /api/products/:id` - Ürün güncelle (Admin)
-- `DELETE /api/products/:id` - Ürün sil (Admin)
-
-### Kategoriler
-- `GET /api/categories` - Tüm kategorileri listele
-- `GET /api/categories/:id` - Tek kategori detayı
-- `POST /api/categories` - Yeni kategori ekle (Admin)
-- `PUT /api/categories/:id` - Kategori güncelle (Admin)
-- `DELETE /api/categories/:id` - Kategori sil (Admin)
-
-### Sepet
-- `GET /api/cart` - Sepeti getir
-- `POST /api/cart/add` - Ürün ekle
-- `PUT /api/cart/update` - Ürün miktarını güncelle
-- `DELETE /api/cart/remove/:productId` - Ürün kaldır
-- `DELETE /api/cart/clear` - Sepeti temizle
-
-### Siparişler
-- `POST /api/orders` - Yeni sipariş oluştur
-- `GET /api/orders` - Tüm siparişleri listele (Admin)
+### API Endpoints
+- `GET /api/products` - Ürün listesi
+- `GET /api/categories` - Kategori listesi
+- `POST /api/orders` - Sipariş oluşturma
 - `GET /api/orders/:id` - Sipariş detayı
-- `PUT /api/orders/:id/status` - Sipariş durumu güncelle (Admin)
-- `PUT /api/orders/:id/payment` - Ödeme durumu güncelle (Admin)
+- `POST /api/payment/initiate` - Ödeme başlatma
 
-## 🎨 Sayfalar
+## 🌐 Deployment
 
-### Kullanıcı Sayfaları
-- **Ana Sayfa**: Hero section, kategoriler, öne çıkan ürünler
-- **Ürünler**: Ürün listesi, filtreleme, arama, sıralama
-- **Ürün Detay**: Ürün bilgileri, sepete ekleme
-- **Sepet**: Sepet yönetimi, miktar güncelleme
-- **Ödeme**: Müşteri bilgileri, ödeme yöntemi seçimi
-- **Sipariş Onayı**: Sipariş detayları, durum bilgisi
-
-## 🛒 E-ticaret Özellikleri
-
-### Sepet Sistemi
-- Session-based sepet yönetimi
-- Ürün miktarı güncelleme
-- Sepet toplamı hesaplama
-- Sepet temizleme
-
-### Ödeme Sistemi
-- Kredi kartı ödeme
-- Kapıda ödeme seçeneği
-- Müşteri bilgileri formu
-- Adres bilgileri
-
-### Sipariş Yönetimi
-- Sipariş oluşturma
-- Stok kontrolü
-- Sipariş durumu takibi
-- Müşteri bilgileri
-
-## 🎯 Kategoriler
-
-1. **Güller** - Romantik ve özel günler için
-2. **Papatyalar** - Doğal ve taze çiçekler
-3. **Orkideler** - Zarif ve uzun ömürlü
-4. **Laleler** - Baharın renkli habercileri
-5. **Çiçek Buketleri** - Özel tasarım kompozisyonlar
-
-## 🚀 Deployment
-
-### Production Build
-```bash
-npm run build
-```
+### Vercel ile Deployment
+1. Vercel CLI kurulumu: `npm install -g vercel`
+2. Vercel'e giriş: `vercel login`
+3. Deploy: `vercel`
 
 ### Environment Variables (Production)
-```env
-NODE_ENV=production
-PORT=5000
-```
+Vercel dashboard'da aşağıdaki environment variables'ları ayarlayın:
+- `MONGODB_URI`
+- `JWT_SECRET`
+- `IYZICO_API_KEY`
+- `IYZICO_SECRET_KEY`
+- `IYZICO_BASE_URL`
+- `IYZICO_MERCHANT_ID`
+
+## 🔒 Güvenlik
+
+- JWT tabanlı kimlik doğrulama
+- CORS koruması
+- Input validation
+- SQL injection koruması
+- XSS koruması
+
+## 📱 Responsive Tasarım
+
+- Mobile-first yaklaşım
+- Tablet ve desktop uyumlu
+- Touch-friendly arayüz
+- Progressive Web App özellikleri
+
+## 🎨 UI/UX Özellikleri
+
+- Glassmorphism efektleri
+- Smooth animasyonlar
+- Loading states
+- Error handling
+- Success notifications
+- Modern gradient'lar
+- Hover efektleri
+
+## 🔄 Geliştirme
+
+### Yeni Özellik Ekleme
+1. Feature branch oluşturun: `git checkout -b feature/yeni-ozellik`
+2. Geliştirmeyi yapın
+3. Test edin
+4. Commit yapın: `git commit -m "feat: yeni özellik eklendi"`
+5. Push edin: `git push origin feature/yeni-ozellik`
+6. Pull request oluşturun
+
+### Kod Stili
+- ESLint kurallarına uyun
+- Prettier kullanın
+- Component'leri modüler tutun
+- Prop types kullanın
+
+## 🐛 Sorun Giderme
+
+### Yaygın Sorunlar
+
+1. **Port 5000 kullanımda**
+   ```bash
+   taskkill /f /im node.exe
+   ```
+
+2. **MongoDB bağlantı hatası**
+   - MongoDB servisinin çalıştığından emin olun
+   - Connection string'i kontrol edin
+
+3. **iyzico ödeme hatası**
+   - API key'leri kontrol edin
+   - Sandbox/Production ayarlarını kontrol edin
+
+## 📞 Destek
+
+Sorunlarınız için:
+- GitHub Issues kullanın
+- Email: support@gardencicekcilik.com
+
+## 📄 Lisans
+
+Bu proje MIT lisansı altında lisanslanmıştır.
 
 ## 🤝 Katkıda Bulunma
 
@@ -186,16 +204,6 @@ PORT=5000
 4. Push edin (`git push origin feature/AmazingFeature`)
 5. Pull Request oluşturun
 
-## 📝 Lisans
-
-Bu proje MIT lisansı altında lisanslanmıştır.
-
-## 📞 İletişim
-
-- **Telefon**: +90 555 123 45 67
-- **E-posta**: info@gardencicekcilik.com
-- **Adres**: İstanbul, Türkiye
-
 ---
 
-**Garden Çiçekçilik** - En güzel çiçekler, en uygun fiyatlarla! 🌸 
+**Garden Çiçekçilik** - Modern çiçek satış platformu 🌸 
