@@ -40,16 +40,6 @@ if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
   // In Vercel, static files are served automatically
   // We only need to handle API routes
   console.log('Running in production/Vercel mode');
-  
-  // Handle React routing for SPA
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
-  
-  // Specific route for admin page
-  app.get('/admin', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
 }
 
 const PORT = process.env.PORT || 5000;

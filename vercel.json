@@ -19,22 +19,8 @@
       "dest": "server.js"
     },
     {
-      "src": "/admin",
-      "dest": "/client/index.html"
-    },
-    {
-      "src": "/admin/(.*)",
-      "dest": "/client/index.html"
-    },
-    {
       "src": "/(.*)",
       "dest": "/client/$1"
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/client/$1"
     }
   ]
 } 
