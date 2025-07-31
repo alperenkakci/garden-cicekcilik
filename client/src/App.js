@@ -24,17 +24,11 @@ import './App.css';
 
 function App() {
   const [cart, setCart] = useState({ items: [], total: 0 });
-  const [loading, setLoading] = useState(false);
 
   // Generate session ID for cart
   const sessionId = localStorage.getItem('sessionId') || 
     Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   
-  useEffect(() => {
-    localStorage.setItem('sessionId', sessionId);
-    fetchCart();
-  }, [sessionId, fetchCart]);
-
   const fetchCart = async () => {
     try {
       const response = await fetch('/api/cart', {
@@ -48,6 +42,11 @@ function App() {
       console.error('Error fetching cart:', error);
     }
   };
+  
+  useEffect(() => {
+    localStorage.setItem('sessionId', sessionId);
+    fetchCart();
+  }, [sessionId]);
 
   const addToCart = async (productId, quantity = 1) => {
     try {

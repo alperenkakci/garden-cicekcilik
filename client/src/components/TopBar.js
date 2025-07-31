@@ -6,7 +6,6 @@ import './TopBar.css';
 const TopBar = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeCategory, setActiveCategory] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -53,7 +52,6 @@ const TopBar = () => {
               <Link 
                 to={`/products?category=${category._id}`}
                 className={`category-link ${location.search.includes(`category=${category._id}`) ? 'active' : ''}`}
-                onClick={() => setActiveCategory(null)}
               >
                 {category.name}
               </Link>
