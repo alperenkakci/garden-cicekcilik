@@ -1,0 +1,291 @@
+.order-tracking {
+  padding: 2rem 0;
+  min-height: 70vh;
+}
+
+.order-tracking .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.order-tracking h1 {
+  text-align: center;
+  color: #2c5530;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.tracking-description {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.tracking-form {
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.order-input {
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.order-input:focus {
+  outline: none;
+  border-color: #4a7c59;
+}
+
+.track-button {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #4a7c59, #2c5530);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.track-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+}
+
+.track-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error-message {
+  background: #fee;
+  color: #c33;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 2rem;
+  border: 1px solid #fcc;
+}
+
+.order-details {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+.order-details h2 {
+  color: #2c5530;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.order-info {
+  margin-bottom: 2rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: 600;
+  color: #555;
+}
+
+.value {
+  font-weight: 500;
+  color: #333;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.status-icon {
+  font-size: 1.2rem;
+}
+
+.status-pending .status-icon {
+  color: #f39c12;
+}
+
+.status-processing .status-icon {
+  color: #3498db;
+}
+
+.status-shipped .status-icon {
+  color: #9b59b6;
+}
+
+.status-delivered .status-icon {
+  color: #27ae60;
+}
+
+.status-cancelled .status-icon {
+  color: #e74c3c;
+}
+
+.order-items {
+  margin-bottom: 2rem;
+}
+
+.order-items h3 {
+  color: #2c5530;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-item {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  border-left: 4px solid #4a7c59;
+}
+
+.item-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.item-name {
+  font-weight: 600;
+  color: #333;
+  flex: 1;
+  min-width: 200px;
+}
+
+.item-quantity {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.item-price {
+  font-weight: 600;
+  color: #4a7c59;
+}
+
+.shipping-info h3 {
+  color: #2c5530;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.shipping-details {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.shipping-details p {
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+  .shipping-details strong {
+    color: #333;
+    font-weight: 600;
+  }
+
+  .value-with-copy {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .copy-btn {
+    background: none;
+    border: none;
+    color: #4a7c59;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+  }
+
+  .copy-btn:hover {
+    background: #f0f0f0;
+    color: #2c5530;
+  }
+
+  .copied-text {
+    color: #27ae60;
+    font-size: 12px;
+    font-weight: 600;
+    animation: fadeInOut 2s ease-in-out;
+  }
+
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+
+@media (max-width: 768px) {
+  .order-tracking h1 {
+    font-size: 2rem;
+  }
+  
+  .input-group {
+    flex-direction: column;
+  }
+  
+  .track-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .info-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .item-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .order-details {
+    padding: 1.5rem;
+  }
+} 
