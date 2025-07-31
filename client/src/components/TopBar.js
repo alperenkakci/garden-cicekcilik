@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaChevronDown } from 'react-icons/fa';
+// FaChevronDown removed as it's not being used
 import './TopBar.css';
 
 const TopBar = () => {
@@ -29,9 +29,7 @@ const TopBar = () => {
     }
   };
 
-  const handleCategoryClick = (categoryId) => {
-    setActiveCategory(activeCategory === categoryId ? null : categoryId);
-  };
+  // handleCategoryClick removed as it's not being used
 
   if (loading) {
     return (

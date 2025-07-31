@@ -82,7 +82,7 @@ const Contact = () => {
             <div>
               <h3 style={{ marginBottom: '20px', color: '#333' }}>Sosyal Medya</h3>
               <div style={{ display: 'flex', gap: '15px' }}>
-                <a href="#" style={{
+                <a href="https://facebook.com" style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -96,7 +96,7 @@ const Contact = () => {
                 }} onMouseOver={(e) => e.target.style.transform = 'scale(1.1)'} onMouseOut={(e) => e.target.style.transform = 'scale(1)'}>
                   <FaFacebook />
                 </a>
-                <a href="#" style={{
+                <a href="https://instagram.com" style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -110,7 +110,7 @@ const Contact = () => {
                 }} onMouseOver={(e) => e.target.style.transform = 'scale(1.1)'} onMouseOut={(e) => e.target.style.transform = 'scale(1)'}>
                   <FaInstagram />
                 </a>
-                <a href="#" style={{
+                <a href="https://twitter.com" style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -124,7 +124,7 @@ const Contact = () => {
                 }} onMouseOver={(e) => e.target.style.transform = 'scale(1.1)'} onMouseOut={(e) => e.target.style.transform = 'scale(1)'}>
                   <FaTwitter />
                 </a>
-                <a href="#" style={{
+                <a href="https://wa.me/905551234567" style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',

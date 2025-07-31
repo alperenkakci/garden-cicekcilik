@@ -56,7 +56,7 @@ const Products = () => {
 
     fetchData();
     fetchCategories();
-  }, [filters, currentPage]);
+  }, [filters, currentPage, setSearchParams]);
 
   const handleFilterChange = (key, value) => {
     setFilters(prev => ({ ...prev, [key]: value }));

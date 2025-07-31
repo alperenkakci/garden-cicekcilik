@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FaArrowRight, FaStar, FaSearch, FaUserCog } from 'react-icons/fa';
+import { FaArrowRight, FaStar } from 'react-icons/fa';
 
 const Home = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);

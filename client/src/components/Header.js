@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaShoppingCart, FaHome, FaSeedling, FaSearch, FaUser } from 'react-icons/fa';
+import { FaShoppingCart, FaHome, FaSeedling, FaSearch } from 'react-icons/fa';
 
 const Header = ({ cart }) => {
   const cartItemCount = cart.items.reduce((total, item) => total + item.quantity, 0);

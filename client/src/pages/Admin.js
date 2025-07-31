@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
-  FaEye, FaTimes, FaCheck, FaTruck, FaBox, FaUser, FaPhone, FaMapMarkerAlt, 
+  FaEye, FaTimes, FaBox, FaUser, FaPhone, FaMapMarkerAlt, 
   FaCalendarAlt, FaMoneyBillWave, FaSignOutAlt, FaSync, FaPlus, FaEdit, 
   FaTrash, FaSeedling, FaList, FaShoppingBag, FaTags 
 } from 'react-icons/fa';

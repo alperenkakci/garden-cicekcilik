@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FaCreditCard, FaLock, FaShieldAlt, FaCheckCircle, FaTimesCircle, FaSpinner } from 'react-icons/fa';
+import { FaCreditCard, FaLock, FaShieldAlt, FaTimesCircle, FaSpinner } from 'react-icons/fa';
 
 const Payment = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [paymentUrl, setPaymentUrl] = useState('');
+  // paymentUrl and setPaymentUrl removed as they're not being used
   const [orderData, setOrderData] = useState(null);
 
   useEffect(() => {

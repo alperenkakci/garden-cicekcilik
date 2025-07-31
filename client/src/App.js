@@ -33,7 +33,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem('sessionId', sessionId);
     fetchCart();
-  }, []);
+  }, [sessionId, fetchCart]);
 
   const fetchCart = async () => {
     try {
@@ -146,14 +146,7 @@ function App() {
     }
   };
 
-  const cartContext = {
-    cart,
-    addToCart,
-    updateCartItem,
-    removeFromCart,
-    clearCart,
-    loading
-  };
+  // Cart context removed as it's not being used
 
   return (
     <div className="App">
