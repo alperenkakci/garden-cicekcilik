@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaSearch } from 'react-icons/fa';
@@ -29,7 +29,7 @@ function App() {
   const sessionId = localStorage.getItem('sessionId') || 
     Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   
-  const fetchCart = async () => {
+  const fetchCart = useCallback(async () => {
     try {
       const response = await fetch('/api/cart', {
         headers: {
@@ -41,12 +41,12 @@ function App() {
     } catch (error) {
       console.error('Error fetching cart:', error);
     }
-  };
+  }, [sessionId]);
   
   useEffect(() => {
     localStorage.setItem('sessionId', sessionId);
     fetchCart();
-  }, [sessionId]);
+  }, [sessionId, fetchCart]);
 
   const addToCart = async (productId, quantity = 1) => {
     try {
