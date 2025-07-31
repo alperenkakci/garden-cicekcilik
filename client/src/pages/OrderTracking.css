@@ -11,7 +11,7 @@
 
 .order-tracking h1 {
   text-align: center;
-  color: #2c5530;
+  color: var(--primary-color);
   margin-bottom: 1rem;
   font-size: 2.5rem;
 }
@@ -45,12 +45,12 @@
 
 .order-input:focus {
   outline: none;
-  border-color: #4a7c59;
+  border-color: var(--primary-color);
 }
 
 .track-button {
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #4a7c59, #2c5530);
+  background: var(--gradient-primary);
   color: white;
   border: none;
   border-radius: 8px;
@@ -65,7 +65,7 @@
 
 .track-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+  box-shadow: 0 4px 12px rgba(46, 139, 87, 0.3);
 }
 
 .track-button:disabled {
@@ -93,7 +93,7 @@
 }
 
 .order-details h2 {
-  color: #2c5530;
+  color: var(--primary-color);
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
   text-align: center;

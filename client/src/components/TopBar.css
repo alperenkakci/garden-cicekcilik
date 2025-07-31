@@ -1,5 +1,5 @@
 .top-bar {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: var(--gradient-primary);
   color: white;
   padding: 8px 0;
   position: fixed;
@@ -7,7 +7,7 @@
   left: 0;
   right: 0;
   z-index: 999;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(46, 139, 87, 0.2);
 }
 
 .top-bar-content {
