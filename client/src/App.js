@@ -50,7 +50,6 @@ function App() {
 
   const addToCart = async (productId, quantity = 1) => {
     try {
-      setLoading(true);
       const response = await fetch('/api/cart/add', {
         method: 'POST',
         headers: {
@@ -70,8 +69,6 @@ function App() {
       }
     } catch (error) {
       toast.error('Bir hata oluştu');
-    } finally {
-      setLoading(false);
     }
   };
 
