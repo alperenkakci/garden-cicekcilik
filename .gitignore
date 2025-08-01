@@ -96,3 +96,4 @@ Thumbs.db
 # Config files with sensitive data
 config/iyzico.js 
 node_modules
+.vercel

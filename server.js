@@ -12,20 +12,54 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://admin:admin123456@cluster0.va2y2ff.mongodb.net/garden-cicekcilik?retryWrites=true&w=majority&appName=Cluster0', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
-  console.log('MongoDB connected successfully');
-}).catch((error) => {
-  console.error('MongoDB connection error:', error);
-});
+// MongoDB Connection with better error handling
+const connectDB = async () => {
+  try {
+    const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://admin:admin123456@cluster0.va2y2ff.mongodb.net/garden-cicekcilik?retryWrites=true&w=majority&appName=Cluster0';
+    console.log('Attempting to connect to MongoDB...');
+    
+    await mongoose.connect(mongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+    });
+    
+    console.log('MongoDB connected successfully');
+  } catch (error) {
+    console.error('MongoDB connection error:', error.message);
+    // Don't exit in production, let the app continue
+    if (process.env.NODE_ENV !== 'production') {
+      process.exit(1);
+    }
+  }
+};
+
+// Set default environment variables for mock values
+if (!process.env.JWT_SECRET) {
+  process.env.JWT_SECRET = 'mock-jwt-secret-key-2024';
+  console.log('Using mock JWT_SECRET');
+}
+
+if (!process.env.IYZICO_API_KEY) {
+  process.env.IYZICO_API_KEY = 'sandbox-afXhZPW0MQlE4dCUUlHcEopnMBgXnAZI';
+  console.log('Using mock IYZICO_API_KEY');
+}
+
+if (!process.env.IYZICO_SECRET_KEY) {
+  process.env.IYZICO_SECRET_KEY = 'sandbox-wbwpzKJDmlBmGdO6JYXrlIYHqYJqbU1q';
+  console.log('Using mock IYZICO_SECRET_KEY');
+}
+
+// Initialize database connection
+connectDB();
 
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on('error', (error) => {
+  console.error('MongoDB connection error:', error);
+});
 db.once('open', () => {
-  console.log('MongoDB connected successfully');
+  console.log('MongoDB connection established');
 });
 
 // Routes
@@ -35,6 +69,20 @@ app.use('/api/cart', require('./routes/cart').router);
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/auth', require('./routes/auth').router);
 app.use('/api/payment', require('./routes/payment'));
+
+// Global error handler
+app.use((error, req, res, next) => {
+  console.error('Global error handler:', error);
+  res.status(500).json({
+    error: 'Internal Server Error',
+    message: process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'
+  });
+});
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found' });
+});
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
