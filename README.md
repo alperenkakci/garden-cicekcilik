@@ -211,4 +211,6 @@ Bu proje MIT lisansı altında lisanslanmıştır.
 
 ---
 
-**Garden Çiçekçilik** - Modern çiçek satış platformu 🌸 
+**Garden Çiçekçilik** - Modern çiçek satış platformu 🌸
+
+<!-- Last updated: $(date) --> 
