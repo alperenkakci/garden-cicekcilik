@@ -12,15 +12,27 @@ const Home = () => {
       try {
         // Fetch featured products
         const productsResponse = await fetch('/api/products?limit=6');
-        const productsData = await productsResponse.json();
-        setFeaturedProducts(productsData.products || []);
+        if (productsResponse.ok) {
+          const productsData = await productsResponse.json();
+          setFeaturedProducts(productsData.products || []);
+        } else {
+          console.error('Products API error:', productsResponse.status);
+          setFeaturedProducts([]);
+        }
 
         // Fetch categories
         const categoriesResponse = await fetch('/api/categories');
-        const categoriesData = await categoriesResponse.json();
-        setCategories(categoriesData || []);
+        if (categoriesResponse.ok) {
+          const categoriesData = await categoriesResponse.json();
+          setCategories(categoriesData || []);
+        } else {
+          console.error('Categories API error:', categoriesResponse.status);
+          setCategories([]);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
+        setFeaturedProducts([]);
+        setCategories([]);
       } finally {
         setLoading(false);
       }
@@ -34,6 +46,94 @@ const Home = () => {
       <div className="loading-container">
         <div className="spinner"></div>
         <p className="loading-text">Ana sayfa yükleniyor...</p>
+      </div>
+    );
+  }
+
+  // Fallback content if no data is loaded
+  if (!featuredProducts.length && !categories.length) {
+    return (
+      <div>
+        {/* Hero Section */}
+        <section className="hero">
+          <div className="hero-content">
+            <h1 className="float">🌸 Garden Çiçekçilik 🌸</h1>
+            <p>En güzel çiçekler, en uygun fiyatlarla. Özel günlerinizde sevdiklerinizi mutlu edin.</p>
+            <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link to="/products" className="btn btn-primary pulse" style={{ fontSize: '1.2rem', padding: '18px 35px' }}>
+                Ürünleri Keşfet
+                <FaArrowRight style={{ marginLeft: '12px' }} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section style={{ padding: '60px 0', background: 'white' }}>
+          <div className="container">
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '60px',
+              alignItems: 'center'
+            }}>
+              <div>
+                <h2 style={{ fontSize: '2.5rem', marginBottom: '20px', color: '#333' }}>
+                  Neden Garden Çiçekçilik?
+                </h2>
+                <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#666', marginBottom: '20px' }}>
+                  Yılların deneyimi ile çiçek sektöründe öncü olan Garden Çiçekçilik, 
+                  en taze ve kaliteli çiçekleri sizlere sunmaktadır.
+                </p>
+                <ul style={{ listStyle: 'none', lineHeight: '2' }}>
+                  <li style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                    <span style={{ 
+                      color: '#4CAF50', 
+                      marginRight: '10px', 
+                      fontSize: '1.2rem' 
+                    }}>✓</span>
+                    Taze ve kaliteli çiçekler
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                    <span style={{ 
+                      color: '#4CAF50', 
+                      marginRight: '10px', 
+                      fontSize: '1.2rem' 
+                    }}>✓</span>
+                    Hızlı teslimat
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                    <span style={{ 
+                      color: '#4CAF50', 
+                      marginRight: '10px', 
+                      fontSize: '1.2rem' 
+                    }}>✓</span>
+                    Uygun fiyatlar
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                    <span style={{ 
+                      color: '#4CAF50', 
+                      marginRight: '10px', 
+                      fontSize: '1.2rem' 
+                    }}>✓</span>
+                    7/24 müşteri desteği
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <img 
+                  src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                  alt="Çiçek düzenleme"
+                  style={{ 
+                    width: '100%', 
+                    borderRadius: '12px',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     );
   }
