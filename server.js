@@ -70,20 +70,6 @@ app.use('/api/orders', require('./routes/orders'));
 app.use('/api/auth', require('./routes/auth').router);
 app.use('/api/payment', require('./routes/payment'));
 
-// Global error handler
-app.use((error, req, res, next) => {
-  console.error('Global error handler:', error);
-  res.status(500).json({
-    error: 'Internal Server Error',
-    message: process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'
-  });
-});
-
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({ error: 'Route not found' });
-});
-
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
   console.log('Running in production/Vercel mode');
@@ -107,6 +93,20 @@ if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
+
+// Global error handler
+app.use((error, req, res, next) => {
+  console.error('Global error handler:', error);
+  res.status(500).json({
+    error: 'Internal Server Error',
+    message: process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong'
+  });
+});
+
+// 404 handler - only for API routes that don't exist
+app.use('/api/*', (req, res) => {
+  res.status(404).json({ error: 'API route not found' });
+});
 
 const PORT = process.env.PORT || 5000;
 
