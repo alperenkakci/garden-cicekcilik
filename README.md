@@ -186,6 +186,11 @@ Vercel dashboard'da aşağıdaki environment variables'ları ayarlayın:
    - API key'leri kontrol edin
    - Sandbox/Production ayarlarını kontrol edin
 
+4. **iyzico config modülü bulunamıyor hatası**
+   - Bu hata genellikle deployment ortamında config dosyalarının bulunamadığından kaynaklanır
+   - Çözüm: Environment variables kullanın veya config dosyalarının deployment'a dahil edildiğinden emin olun
+   - Vercel deployment için `vercel.json` dosyasında `includeFiles` ayarını kontrol edin
+
 ## 📞 Destek
 
 Sorunlarınız için:

@@ -1,6 +1,26 @@
 const crypto = require('crypto');
 const fetch = require('node-fetch');
-const iyzicoConfig = require('../config/iyzico');
+
+// Try to load config from different possible locations
+let iyzicoConfig;
+try {
+  iyzicoConfig = require('../config/iyzico');
+} catch (error) {
+  try {
+    iyzicoConfig = require('../config').iyzico;
+  } catch (error2) {
+    // Fallback configuration
+    iyzicoConfig = {
+      apiKey: process.env.IYZICO_API_KEY || 'sandbox-afXhZPW0MQlE4dCUUlHcEopnMBgXnAZI',
+      secretKey: process.env.IYZICO_SECRET_KEY || 'sandbox-wbwpzKJDmlBmGdO6JYXrlIYHqYJqbU1q',
+      baseUrl: process.env.IYZICO_BASE_URL || 'https://sandbox-api.iyzipay.com',
+      callbackUrl: process.env.IYZICO_CALLBACK_URL || 'http://localhost:3000/payment/callback',
+      cancelUrl: process.env.IYZICO_CANCEL_URL || 'http://localhost:3000/payment/cancel',
+      currency: 'TRY',
+      locale: 'tr'
+    };
+  }
+}
 
 class IyzicoHelper {
   constructor() {
